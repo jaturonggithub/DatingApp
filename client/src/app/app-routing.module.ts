@@ -1,3 +1,4 @@
+import { AdminGuard } from "./_guards/admin.guard";
 import { MemberDetailedResolver } from "./_resolvers/member-detailed.resolvers";
 import { PreventUnsavedChangesGuard } from "./_guards/prevendt-unsaved-changes.guard";
 import { ServerErrorComponent } from "./errors/server-error/server-error.component";
@@ -13,8 +14,9 @@ import { MemberEditComponent } from "./members/member-edit/member-edit.component
 import { MemberListComponent } from "./members/member-list/member-list.component";
 import { HomeComponent } from "./home/home.component";
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from "@angular/router";
 import { Report1Component } from "./reports/report1/report1.component";
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -31,6 +33,7 @@ const routes: Routes = [
       {path: 'campaigns', component: CampaignsComponent},
       {path: 'reports', component: Report1Component},
       {path: 'userprofile', component: UserprofileComponent},
+      {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
     ]
   },
   {path: 'errors', component: TestErrorsComponent},
